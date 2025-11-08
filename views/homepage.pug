@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title= title
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    header
+      h1= title
+      a(href="/update-cobj") Add/Update this table
+
+    main
+      if data && data.length
+        table(border="1", cellpadding="8", cellspacing="0")
+          thead
+            tr
+              th ID
+              th Name
+              th Type
+              th Bio
+          tbody
+            each item in data
+              tr
+                td= item.id
+                td= (item.properties && item.properties.name) || ''
+                td= (item.properties && item.properties.type) || ''
+                td= (item.properties && item.properties.bio) || ''
+      else
+        p No records found.

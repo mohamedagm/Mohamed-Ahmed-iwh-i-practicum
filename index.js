@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const app = express();
@@ -7,11 +8,11 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const PRIVATE_APP_ACCESS = 'YOUR_TOKEN_HERE';
+const PRIVATE_APP_ACCESS = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
 
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 app.get('/', async (req, res) => {
-    const url = "https://api.hubspot.com/crm/v3/objects/pets?properties=name,type,bio&limit=100";
+    const url = "https://api.hubapi.com/crm/v3/objects/2-194397331?properties=name,type,bio&limit=100";
 
     try {
         const response = await axios.get(url, {
@@ -22,7 +23,7 @@ app.get('/', async (req, res) => {
         });
 
         const data = response.data.results;
-        res.render('index', { title: 'Pets | HubSpot API', data });
+        res.render('homepage', { title: 'Pets | HubSpot API', data });
 
     } catch (error) {
         console.error(error);
@@ -47,7 +48,7 @@ app.post('/update-cobj', async (req, res) => {
 
     try {
         await axios.post(
-            "https://api.hubspot.com/crm/v3/objects/pets",
+            "https://api.hubapi.com/crm/v3/objects/2-194397331",
             petObject,
             {
                 headers: {
