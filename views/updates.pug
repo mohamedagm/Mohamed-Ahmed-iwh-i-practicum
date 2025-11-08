@@ -9,16 +9,20 @@ html
     header
       h1= title
       a(href="/") Return to the homepage
+
     main
       form(action="/update-cobj", method="POST")
         div
           label(for="name") Name
-          input#name(type="text", name="name", required=true, placeholder="Pet name")
+          input#name(type="text", name="name", required=true)
+
         div
-          label(for="species") Species
-          input#species(type="text", name="species", required=true, placeholder="e.g. Dog, Cat")
+          label(for="type") Type
+          input#type(type="text", name="type", required=true)
+
         div
           label(for="bio") Bio
-          textarea#bio(name="bio", rows="4", placeholder="Short bio about the pet")
+          textarea#bio(name="bio", rows="4")
+
         div
           button(type="submit") Submit
