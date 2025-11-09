@@ -1,58 +1,186 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-body, * {
-    font-family: 'Roboto', sans-serif;
+/* Reset-ish */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-h1 {
-    margin: 1rem;
+html,
+body {
+    height: 100%;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: #f6f8fa;
+    color: #0f1724;
 }
 
-.cards {
+/* Layout */
+.container {
+    max-width: 980px;
+    margin: 32px auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
-.card {
-    flex-basis: 31%;
-    margin: 1rem 0.4rem;
-    padding: 1rem 0.4rem 2.5rem 0.4rem;
-    border: solid 1px lightgrey;
-    border-radius: 15px;
-    box-shadow: 3px 2px 6px lightgrey;
+.header__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #0b1220;
 }
 
-.card__email {
-    font-size: 1rem;
-}
-
-.form-wrapper {
-    font-size: 18px;
-    max-width: 768px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border: solid 1px lightgrey;
-    border-radius: 15px;
-    box-shadow: 3px 2px 6px lightgrey;
-}
-
-label, input {
-    margin-top: 5px;
-    display: block;
-    font-size: inherit;
-}
-
-input[type="text"] {
-    padding: .25rem;
-}
-
-input[type="submit"] {
-    background-color: lightgrey;
+/* Buttons */
+.button {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #2563eb, #1e40af);
+    color: #fff;
+    font-weight: 600;
     border: none;
-    padding: .375rem 1rem;
-    margin-top: 10px;
+    cursor: pointer;
+    transition: transform .08s ease, box-shadow .12s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+.button--ghost {
+    background: transparent;
+    color: #0b1220;
+    border: 1px solid rgba(11, 18, 32, 0.08);
+    box-shadow: none;
+}
+
+/* Content */
+.content {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 6px 20px rgba(11, 18, 32, 0.04);
+}
+
+/* Table styles */
+.table-wrap {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+.table__head th {
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+    color: #0b1220;
+    border-bottom: 1px solid #eef2f6;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.00));
+}
+
+.table__body tr:nth-child(odd) {
+    background: #fbfdff;
+}
+
+.table__row:hover {
+    background: #f1f5f9;
+}
+
+.table__cell {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    color: #0b1220;
+    vertical-align: middle;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Empty state */
+.empty {
+    text-align: center;
+    padding: 32px 8px;
+    color: #475569;
+}
+
+.empty p {
+    margin-bottom: 12px;
+}
+
+/* Form */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form__row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.form__label {
+    font-size: 0.9rem;
+    color: #0f1724;
+    font-weight: 600;
+}
+
+.form__input,
+.form__textarea {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #e6eef8;
+    background: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: box-shadow .12s ease, border-color .12s ease;
+}
+
+.form__input:focus,
+.form__textarea:focus {
+    border-color: #93c5fd;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.06);
+}
+
+.form__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width:720px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .table {
+        min-width: 520px;
+    }
+
+    .container {
+        padding: 12px;
+        margin: 20px auto;
+    }
+
+    .header__title {
+        font-size: 1.25rem;
+    }
 }

@@ -6,25 +6,29 @@ html
     title= title
     link(rel="stylesheet", href="/css/style.css")
   body
-    header
-      h1= title
-      a(href="/update-cobj") Add/Update this table
+    .container
+      header.header
+        h1.header__title= title
+        a.button(href="/update-cobj") Add/Update this table
 
-    main
-      if data && data.length
-        table(border="1", cellpadding="8", cellspacing="0")
-          thead
-            tr
-              th ID
-              th Name
-              th Type
-              th Bio
-          tbody
-            each item in data
-              tr
-                td= item.id
-                td= (item.properties && item.properties.name) || ''
-                td= (item.properties && item.properties.type) || ''
-                td= (item.properties && item.properties.bio) || ''
-      else
-        p No records found.
+      main.content
+        if data && data.length
+          .table-wrap
+            table.table
+              thead.table__head
+                tr
+                  th ID
+                  th Name
+                  th Type
+                  th Bio
+              tbody.table__body
+                each item in data
+                  tr.table__row
+                    td.table__cell= item.id
+                    td.table__cell= (item.properties && item.properties.name) || ''
+                    td.table__cell= (item.properties && item.properties.type) || ''
+                    td.table__cell= (item.properties && item.properties.bio) || ''
+        else
+          .empty
+            p No records found.
+            a.button.button--ghost(href="/update-cobj") Add your first record
